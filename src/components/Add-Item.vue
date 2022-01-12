@@ -4,13 +4,14 @@
       Welcome, <span class="high-light">{{ name }}!</span><BR /> Please, add
       value to list
     </h2>
-    <input placeholder="Value" />
-    <button>Add</button>
+    <input v-model="value" placeholder="Value" />
+    <button @click="onSubmit">Add</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { apiService } from "@/services/api.service";
 
 @Options({
   props: {
@@ -19,6 +20,13 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class AddItem extends Vue {
   name!: string;
+  value!: string;
+
+  async onSubmit(): Promise<void> {
+    await apiService.addItem(this.value).then(() => {
+      this.$router.push("List");
+    });
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { Item } from "@/models/Item.model";
-import { User } from "@/models/User.model";
+import { Item } from '@/models/Item.model';
+import { User } from '@/models/User.model';
 
 const apiClient = axios.create({
   baseURL: "https://hello.dhstaging.net/api/sys/v1.0/front_end_test/",
@@ -9,6 +9,7 @@ const apiClient = axios.create({
 
 class ApiService {
   public user!: User;
+  public items!: Item[];
 
   public create(name: string): Promise<User> {
     return apiClient.post("create_test", { name }).then(
@@ -27,7 +28,8 @@ class ApiService {
     await apiClient.post(`${this.user.name}/${this.user.code}/create_row`, {
       value,
     });
-    return this.getItems();
+    this.items = await this.getItems();
+    return this.items;
   }
 
   private getItems(): Promise<Item[]> {

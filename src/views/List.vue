@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <AddItem class="add-item" :name="name" />
-    <ListItem class="list-item" />
+    <ListItem class="list-item" :items="items" />
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import { apiService } from "@/services/api.service";
 })
 export default class List extends Vue {
   name = apiService.user.name;
+  items = apiService.items;
 }
 </script>
 <style>
