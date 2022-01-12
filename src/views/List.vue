@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <AddItem class="add-item" name="john" />
-    <ListItem class="list-item" name="john" />
+    <AddItem class="add-item" :name="name" />
+    <ListItem class="list-item" />
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 import { Options, Vue } from "vue-class-component";
 import ListItem from "@/components/List-Item.vue";
 import AddItem from "@/components/Add-Item.vue";
+import { apiService } from "@/services/api.service";
 
 @Options({
   components: {
@@ -16,7 +17,9 @@ import AddItem from "@/components/Add-Item.vue";
     AddItem,
   },
 })
-export default class List extends Vue {}
+export default class List extends Vue {
+  name = apiService.user.name;
+}
 </script>
 <style>
 .list-item {

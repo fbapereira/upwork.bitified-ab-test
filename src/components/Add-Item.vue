@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <h2>Welcome, {{ name }}! <BR /> Please, add value to list</h2>
+    <h2>
+      Welcome, <span class="high-light">{{ name }}!</span><BR /> Please, add
+      value to list
+    </h2>
     <input placeholder="Value" />
     <button>Add</button>
   </div>
@@ -20,4 +23,8 @@ export default class AddItem extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.high-light {
+  color: #3d9df5;
+}
+</style>

@@ -3,10 +3,18 @@
 </template>
 
 <style lang="scss">
+body {
+  margin: 0;
+}
+
 #app {
   font-family: Poppins-SemiBold, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .container {
