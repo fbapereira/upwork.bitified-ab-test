@@ -4,7 +4,10 @@
       Welcome, <span class="high-light">{{ user?.name }}!</span><BR /> Please,
       add value to list
     </h2>
-    <input v-model="value" placeholder="Value" />
+    <div>
+      <input v-model="value" placeholder="Value" />
+      <FormError :error="error"></FormError>
+    </div>
     <button @click="onSubmit">Add</button>
   </div>
 </template>
@@ -15,8 +18,12 @@ import { apiService } from "@/services/api.service";
 import store from "@/store";
 import { PropType } from "vue";
 import { User } from "@/models/User.model";
+import FormError from "@/components/Form-Error.vue";
 
 @Options({
+  components: {
+    FormError,
+  },
   props: {
     user: {
       type: Object as PropType<User>,
@@ -26,13 +33,20 @@ import { User } from "@/models/User.model";
 })
 export default class AddItem extends Vue {
   user!: User;
-  value!: string;
+  value = "";
+  error = "";
 
   async onSubmit(): Promise<void> {
-    let lastRequestTime = await apiService.addItem(this.user, this.value);
-    store.dispatch("setLastRequestTime", lastRequestTime);
-    let items = await apiService.getItems(this.user);
-    store.dispatch("setItems", items);
+    try {
+      let lastRequestTime = await apiService.addItem(this.user, this.value);
+      store.dispatch("setLastRequestTime", lastRequestTime);
+      let items = await apiService.getItems(this.user);
+      store.dispatch("setItems", items);
+    } catch (err) {
+      this.error =
+        err?.response?.data?.validation_error?.details[0].message ||
+        "unknown error";
+    }
   }
 }
 </script>
