@@ -36,13 +36,13 @@ export default class ListItem extends Vue {
 <style scoped lang="scss">
 .list-item {
   background: white;
-  box-shadow: 0 0 16px 0 rgba(0, 0, 0, .05);
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
   color: #bdbdbd;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 25rem;
-  padding: .7rem;
+  padding: 0.7rem;
   text-align: left;
   width: 20rem;
 
@@ -56,7 +56,7 @@ export default class ListItem extends Vue {
   }
 
   p {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
 }
 </style>

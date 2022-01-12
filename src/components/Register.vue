@@ -17,7 +17,9 @@ export default class Register extends Vue {
   error!: string;
 
   async onSubmit(): Promise<void> {
-    apiService.create(this.name);
+    apiService.create(this.name).then(() => {
+      this.$router.push("List");
+    });
   }
 }
 </script>
