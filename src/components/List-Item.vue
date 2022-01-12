@@ -39,10 +39,12 @@ export default class ListItem extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "../styles/variables.scss";
+
 .list-item {
-  background: white;
+  background: $white;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
-  color: #bdbdbd;
+  color: $gray-2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -52,11 +54,11 @@ export default class ListItem extends Vue {
   width: 20rem;
 
   .table {
-    color: #828282;
+    color: $black-1;
     width: 100%;
 
     th {
-      color: #e0e0e0;
+      color: $gray-3;
     }
   }
 

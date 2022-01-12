@@ -53,7 +53,9 @@ export default class AddItem extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "../styles/variables.scss";
+
 .high-light {
-  color: #3d9df5;
+  color: $blue;
 }
 </style>

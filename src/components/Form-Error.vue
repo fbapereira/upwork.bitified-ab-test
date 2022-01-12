@@ -17,33 +17,35 @@ import { Options, Vue } from "vue-class-component";
 export default class FormError extends Vue {}
 </script>
 <style scoped lang="scss">
+@import "../styles/variables.scss";
+
 .form-error {
-  visibility: hidden;
-  position: absolute;
-  height: 3rem;
-  line-height: 3rem;
-  width: 120px;
-  background-color: #fff;
-  color: #e77777;
-  text-align: center;
-  padding: 5px 0;
-  border: solid 2px #e77777;
+  background-color: $white;
   border-radius: 6px;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.6s;
+  border: solid 2px $danger;
+  color: $danger;
+  height: 3rem;
+  line-height: 1.5rem;
   margin-left: 1rem;
+  opacity: 0;
+  padding: 5px 0;
+  position: absolute;
+  text-align: center;
+  transition: opacity 0.6s;
+  visibility: hidden;
+  width: 120px;
+  z-index: 1;
 
   &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 101%;
-    margin-top: -0.5rem;
-    border-width: 0.5rem;
-    border-style: solid;
     border-color: transparent #e77777 transparent transparent;
-    color: white;
+    border-style: solid;
+    border-width: 0.5rem;
+    color: $white;
+    content: "";
+    margin-top: -0.5rem;
+    position: absolute;
+    right: 101%;
+    top: 50%;
   }
 
   &.error {

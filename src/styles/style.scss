@@ -1,0 +1,58 @@
+
+body {
+    color: $black-2;
+    font-family: Poppins-SemiBold, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 42px;
+}
+
+input,
+button {
+    width: 25rem;
+    height: 3.25rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+input {
+    color: $black-3;
+    border: 1px solid $gray-1;
+
+    &::placeholder {
+        color: $gray-1;
+    }
+
+    &:focus {
+        border-color: $light-blue;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem $light-blue;
+    }
+}
+
+
+button {
+    width: 26.5rem;
+    height: 3.25rem;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 0;
+    font-size: 1rem;
+    color: $white;
+    background-color: $blue;
+    border-color: $blue;
+}
