@@ -34,7 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/components/Register.vue", "src/components/List-Item.vue", "src/components/Add-Item.vue", "src/views/list.vue", "src/views/List.vue"  ],
   "exclude": [
     "node_modules"
   ]
