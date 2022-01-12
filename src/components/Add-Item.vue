@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h2>
-      Welcome, <span class="high-light">{{ name }}!</span><BR /> Please, add
-      value to list
+      Welcome, <span class="high-light">{{ user?.name }}!</span><BR /> Please,
+      add value to list
     </h2>
     <input v-model="value" placeholder="Value" />
     <button @click="onSubmit">Add</button>
@@ -12,20 +12,27 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { apiService } from "@/services/api.service";
+import store from "@/store";
+import { PropType } from "vue";
+import { User } from "@/models/User.model";
 
 @Options({
   props: {
-    name: String,
+    user: {
+      type: Object as PropType<User>,
+      required: true,
+    },
   },
 })
 export default class AddItem extends Vue {
-  name!: string;
+  user!: User;
   value!: string;
 
   async onSubmit(): Promise<void> {
-    await apiService.addItem(this.value).then(() => {
-      this.$router.push("List");
-    });
+    let lastRequestTime = await apiService.addItem(this.user, this.value);
+    store.dispatch("setLastRequestTime", lastRequestTime);
+    let items = await apiService.getItems(this.user);
+    store.dispatch("setItems", items);
   }
 }
 </script>

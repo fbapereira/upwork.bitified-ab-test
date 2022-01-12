@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <AddItem class="add-item" :name="name" />
-    <ListItem class="list-item" :items="items" />
+    <AddItem class="add-item" :user="user" />
+    <ListItem
+      class="list-item"
+      :items="items"
+      :lastRequestTime="lastRequestTime"
+    />
   </div>
 </template>
 
@@ -9,18 +13,26 @@
 import { Options, Vue } from "vue-class-component";
 import ListItem from "@/components/List-Item.vue";
 import AddItem from "@/components/Add-Item.vue";
-import { apiService } from "@/services/api.service";
+import store from "@/store";
 
 @Options({
   components: {
     ListItem,
     AddItem,
   },
+  computed: {
+    user() {
+      return store.getters.getUser;
+    },
+    items() {
+      return store.getters.getItems;
+    },
+    lastRequestTime() {
+      return store.getters.getLastRequestTime;
+    },
+  },
 })
-export default class List extends Vue {
-  name = apiService.user.name;
-  items = apiService.items;
-}
+export default class List extends Vue {}
 </script>
 <style>
 .list-item {

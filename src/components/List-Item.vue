@@ -10,7 +10,7 @@
         <td>{{ item.value }}</td>
       </tr>
     </table>
-    <p>Last Request took 57ms</p>
+    <p>{{ lastRequestTime ? `Last Request took ${lastRequestTime}ms` : "" }}</p>
   </div>
 </template>
 
@@ -25,10 +25,15 @@ import { PropType } from "vue";
       type: Object as PropType<Item[]>,
       required: true,
     },
+    lastRequestTime: {
+      type: String,
+      required: false,
+    },
   },
 })
 export default class ListItem extends Vue {
   items!: Item[];
+  lastRequestTime!: Item[];
 }
 </script>
 

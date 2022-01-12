@@ -1,16 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { Item } from '@/models/Item.model';
-import { User } from '@/models/User.model';
+import { Item } from "@/models/Item.model";
+import { User } from "@/models/User.model";
 
 const apiClient = axios.create({
   baseURL: "https://hello.dhstaging.net/api/sys/v1.0/front_end_test/",
 });
 
 class ApiService {
-  public user!: User;
-  public items!: Item[];
-
   public create(name: string): Promise<User> {
     return apiClient.post("create_test", { name }).then(
       ({
@@ -18,22 +15,25 @@ class ApiService {
           data: { code, name },
         },
       }) => {
-        this.user = { code, name };
-        return this.user;
+        return { code, name };
       }
     );
   }
 
-  public async addItem(value: string): Promise<Item[]> {
-    await apiClient.post(`${this.user.name}/${this.user.code}/create_row`, {
-      value,
-    });
-    this.items = await this.getItems();
-    return this.items;
+  public async addItem(user: User, value: string): Promise<string> {
+    const response = await apiClient.post(
+      `${user.name}/${user.code}/create_row`,
+      {
+        value,
+      }
+    );
+    return response.headers["dh_took_ms"];
   }
 
-  private getItems(): Promise<Item[]> {
-    return apiClient.get(`${this.user.name}/${this.user.code}/get_rows`);
+  public getItems(user: User): Promise<Item[]> {
+    return apiClient
+      .get(`${user.name}/${user.code}/get_rows`)
+      .then(({ data: { data } }) => data);
   }
 }
 
