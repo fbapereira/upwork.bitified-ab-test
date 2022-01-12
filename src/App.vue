@@ -24,25 +24,25 @@ input,
 button {
   width: 25rem;
   height: 3.25rem;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin-bottom: 2rem;
 }
 
 input {
   color: #495057;
-  border: 1px solid #BEBEBE;
+  border: 1px solid #bebebe;
 
   &::placeholder {
-    color: #BEBEBE;
+    color: #bebebe;
   }
 
   &:focus {
-    border-color: #C2DBFE;
+    border-color: #c2dbfe;
     outline: 0;
-    box-shadow: 0 0 0 0.25rem #C2DBFE;
+    box-shadow: 0 0 0 0.25rem #c2dbfe;
   }
 }
 
